@@ -20,10 +20,10 @@ jobs:
 
       - name: Build Plugin
         run: |
-          mkdir -p bin/Release/net7.0
           dotnet build --configuration Release --framework net7.0
+          ls -R bin/Release/net7.0/
 
-      - name: List Build Directory Contents
+      - name: List Build Directory Contents Before Upload
         run: ls -R bin/
 
       - name: Upload Artifact
