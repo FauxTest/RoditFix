@@ -20,8 +20,8 @@
     <PackageReference Include="Dalamud" Version="8.0.0" />
     <PackageReference Include="NAudio" Version="2.1.0" />
     <Reference Include="JetBrains.Annotations">
-        <Private>false</Private>
-        <HintPath>$(DalamudLibPath)\JetBrains.Annotations.dll</HintPath>
+      <Private>false</Private>
+      <HintPath>$(DalamudLibPath)\JetBrains.Annotations.dll</HintPath>
     </Reference>
   </ItemGroup>
 
