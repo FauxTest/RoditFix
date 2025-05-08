@@ -1,0 +1,28 @@
+name: Build Plugin
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Build Plugin
+        run: dotnet build --configuration Release --framework net7.0
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: NoMountWhileMoving
+          path: bin/Release/net7.0/
