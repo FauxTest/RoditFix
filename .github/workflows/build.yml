@@ -20,8 +20,12 @@ jobs:
 
       - name: Add NuGet Sources
         run: |
-          dotnet nuget add source https://api.nuget.org/v3/index.json --name nuget.org
-          dotnet nuget add source https://goatcorp.dev/nuget --name Dalamud
+          if ! dotnet nuget list source | grep -q "nuget.org"; then
+            dotnet nuget add source https://api.nuget.org/v3/index.json --name nuget.org
+          fi
+          if ! dotnet nuget list source | grep -q "Dalamud"; then
+            dotnet nuget add source https://goatcorp.dev/nuget --name Dalamud
+          fi
 
       - name: Restore Dependencies
         run: dotnet restore --configfile nuget.config
