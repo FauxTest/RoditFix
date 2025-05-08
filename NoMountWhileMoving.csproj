@@ -1,4 +1,5 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Dalamud.NET.Sdk/12.0.2">
+
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,7 +8,31 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <OutputPath>bin/Release</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <OutputPath>$(DalamudDevPlugins)</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Dalamud" Version="8.0.0" />
+    <PackageReference Include="NAudio" Version="2.1.0" />
+    <Reference Include="JetBrains.Annotations">
+        <Private>false</Private>
+        <HintPath>$(DalamudLibPath)\JetBrains.Annotations.dll</HintPath>
+    </Reference>
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.png" CopyToOutputDirectory="Always" />
+    <EmbeddedResource Include="NoMountWhileMoving.json" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PunishLib\PunishLib\PunishLib.csproj" />
+    <ProjectReference Include="..\ECommons\ECommons\ECommons.csproj" />
+  </ItemGroup>
+
 </Project>
