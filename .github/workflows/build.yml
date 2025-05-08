@@ -19,11 +19,13 @@ jobs:
           dotnet-version: '7.0.x'
 
       - name: Build Plugin
-        run: dotnet build --configuration Release --framework net7.0
-        
+        run: |
+          mkdir -p bin/Release/net7.0
+          dotnet build --configuration Release --framework net7.0
+
       - name: List Build Directory Contents
         run: ls -R bin/
-        
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
