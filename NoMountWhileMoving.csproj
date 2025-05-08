@@ -10,4 +10,12 @@
   <ItemGroup>
     <PackageReference Include="Dalamud" Version="8.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageSource>
+      <Clear />
+      <Add Name="Dalamud" Value="https://goatcorp.dev/nuget" />
+      <Add Name="NuGetOfficial" Value="https://api.nuget.org/v3/index.json" />
+    </PackageSource>
+  </ItemGroup>
 </Project>
