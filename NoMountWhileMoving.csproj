@@ -1,17 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>NoMountWhileMoving</RootNamespace>
-    <AssemblyName>NoMountWhileMoving</AssemblyName>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Dalamud" Version="8.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="nuget.config" />
-  </ItemGroup>
-</Project>
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="Dalamud" value="https://goatcorp.dev/nuget" />
+    <add key="NuGetOfficial" value="https://api.nuget.org/v3/index.json" />
+  </packageSources>
+</configuration>
