@@ -18,11 +18,13 @@ jobs:
         with:
           dotnet-version: '7.0.x'
 
-      - name: Add Dalamud NuGet Source
-        run: dotnet nuget add source https://goatcorp.dev/nuget --name Dalamud
+      - name: Add NuGet Sources
+        run: |
+          dotnet nuget add source https://api.nuget.org/v3/index.json --name nuget.org
+          dotnet nuget add source https://goatcorp.dev/nuget --name Dalamud
 
       - name: Restore Dependencies
-        run: dotnet restore
+        run: dotnet restore --configfile nuget.config
 
       - name: Build Plugin
         run: dotnet build --configuration Release --framework net7.0
