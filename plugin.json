@@ -1,0 +1,12 @@
+{
+    "Author": "Fauxtest",
+    "Name": "NoMountWhileMoving",
+    "Punchline": "Blocks mount attempts while moving.",
+    "Description": "Prevents players from mounting while moving.",
+    "Version": "1.0.0",
+    "DalamudApiLevel": 8,
+    "EffectiveApiLevel": 8,
+    "RepoUrl": "https://github.com/FauxTest/RoditFix",
+    "ApplicableVersion": "latest",
+    "Tags": ["mount", "movement", "restriction", "automation"]
+}
