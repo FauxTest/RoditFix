@@ -1,49 +1,38 @@
-using Dalamud.Game.Command;
-using Dalamud.IoC;
+using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Plugin;
-using Dalamud.Plugin.Services;
+using ECommons.DalamudServices;
+using FFXIVClientStructs.FFXIV.Client.Game;
 
-namespace SamplePlugin;
+namespace NoMountWhileMoving;
 
-public sealed class Plugin : IDalamudPlugin
+public sealed class NoMountPlugin : IDalamudPlugin
 {
-    private const string CommandName = "/pmycommand";
+    public string Name => "No Mount While Moving";
 
-    public Configuration Configuration { get; init; }
-
-    public Plugin()
+    public void Initialize(DalamudPluginInterface pluginInterface)
     {
-        Configuration = Services.PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
-
-        _ = Services.CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand)
-        {
-            HelpMessage = "A useful message to display in /xlhelp"
-        });
-
-        // This adds a button to the plugin installer entry of this plugin which allows
-        // to toggle the display status of the configuration ui
-        //PluginInterface.UiBuilder.OpenConfigUi += ToggleConfigUI;
-
-        // Adds another button that is doing the same but for the main ui of the plugin
-        //PluginInterface.UiBuilder.OpenMainUi += ToggleMainUI;
+        Svc.Condition.ConditionChange += PreventMountAction;
     }
 
     public void Dispose()
     {
-        bool successfulDispose = true;
+        Svc.Condition.ConditionChange -= PreventMountAction;
+    }
 
-        #region Dispose Actions
-        // Verify each dispose action with the successfulDispose variable.
-        successfulDispose &= Services.CommandManager.RemoveHandler(CommandName);
-        #endregion
-
-        if (!successfulDispose) {
-            
+    private void PreventMountAction(ConditionFlag flag, bool value)
+    {
+        // Only intervene if the player is attempting to cast a mount action
+        if (flag == ConditionFlag.Mounting && value && IsMoving())
+        {
+            ActionManager.Instance()->CancelAction(); 
         }
     }
 
-    private void OnCommand(string command, string args)
+    private bool IsMoving()
     {
-        
+        var player = Svc.ClientState.LocalPlayer;
+        if (player == null) return false; // Player not loaded
+
+        return player.Position != player.PreviousPosition; 
     }
 }
