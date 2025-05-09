@@ -1,6 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Dalamud.NET.Sdk/12.0.2">
 
   <PropertyGroup>
+    <Version>0.0.0.1</Version>
+    <Description>NoMountWhileMoving Plugin</Description>
+    <PackageProjectUrl>https://github.com/FauxTest/RoditFix</PackageProjectUrl>
+    <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+    <IsPackable>false</IsPackable>
     <OutputType>Library</OutputType>
     <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>NoMountWhileMoving</RootNamespace>
@@ -28,6 +34,13 @@
   <ItemGroup>
     <EmbeddedResource Include="Icon.png" CopyToOutputDirectory="Always" />
     <EmbeddedResource Include="NoMountWhileMoving.json" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Data\goat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
